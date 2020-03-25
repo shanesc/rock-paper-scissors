@@ -7,6 +7,23 @@
     <link rel="stylesheet" href="/style.css" type="text/css">
   </head>
   <body>
+    <header>
+      <h1>Rock, Paper, Scissors</h1>
+    </header>
+    <main>
+      <div class="btn-container">
+        <button data-choice="rock" class="btn">Rock</button>
+        <button data-choice="paper" class="btn">Paper</button>
+        <button data-choice="scissors" class="btn">Scissors</button>
+      </div>
+      <div class="results">
+        <p class="results__outcome">Make a selection to play...</p>
+        <div class="results__score">
+          <div class="player-score"></div>
+          <div class="computer-score"></div>
+        </div>
+      </div>
+    </main>
 
     <script src="script.js"></script>
   </body>
