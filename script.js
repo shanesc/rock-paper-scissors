@@ -54,9 +54,38 @@ function playRound(playerSelection, computerSelection) {
 
 function playChoice(e) {
   const playerChoice = e.target.getAttribute('data-choice');
-  // const outcome = document.querySelector('.results__outcome');
   const result = playRound(playerChoice, computerPlay());
   updateScore(result);
+}
+
+function resetGame() {
+  score.player = 0;
+  score.computer = 0;
+  document.querySelector('.results__winner').textContent = '';
+  document.querySelector('.results__outcome').textContent = 'Make a selection to play...';
+  document.querySelector('.player-score').textContent = '';
+  document.querySelector('.computer-score').textContent = '';
+  document.querySelector('.results').removeChild(document.querySelector('.results').lastChild);
+  buttons.forEach(btn => btn.addEventListener('click', playChoice));
+}
+
+function announceWinner(winner) {
+  const winnerDisplay = document.querySelector('.results__winner');
+  switch (winner) {
+    case 'player':
+      winnerDisplay.textContent = 'You win the game!';
+      break;
+    case 'computer':
+      winnerDisplay.textContent = 'The computer wins the game...';
+      break;
+  }
+
+  buttons.forEach(btn => btn.removeEventListener('click', playChoice));
+  const resultsContainer = document.querySelector('.results');
+  let resetButton = document.createElement('button');
+  resetButton.textContent = 'Reset';
+  resultsContainer.appendChild(resetButton);
+  resetButton.addEventListener('click', resetGame);
 }
 
 function updateScore(result) {
@@ -71,81 +100,13 @@ function updateScore(result) {
     score.computer++;
   }
 
+  if (score.player === 5 || score.computer === 5) {
+    score.player > score.computer ? announceWinner('player') : announceWinner('computer');
+  }
+
   playerScore.textContent = `Player: ${score.player}`;
   computerScore.textContent = `Computer: ${score.computer}`;
 }
 
 const buttons = document.querySelectorAll('.btn');
 buttons.forEach(btn => btn.addEventListener('click', playChoice));
-
-
-
-// Obsolete code, repalced by GUI implementation
-
-// function promptSelection() {
-//   let isValid = false;
-//   let playerSelection;
-
-//   while (!(isValid === true)) {
-//     playerSelection = prompt(
-//       `What's your choice? Rock, Paper, or Scissors`,
-//       'Rock'
-//     );
-
-//     if (playerSelection === null) {
-//       return `cancel`;
-//     }
-
-//     switch (playerSelection.toLowerCase()) {
-//       case 'rock':
-//         isValid = true;
-//         break;
-//       case 'paper':
-//         isValid = true;
-//         break;
-//       case 'scissors':
-//         isValid = true;
-//         break;
-//     }
-//   }
-//   return playerSelection;
-// }
-
-// function game() {
-//   let playerSelection = promptSelection();
-
-//   if (playerSelection === 'cancel') {
-//     return `Cancelled`;
-//   }
-
-//   let computerScore = 0;
-//   let playerScore = 0;
-
-//   for (round = 1; round <= 5; round++) {
-//     let result = playRound(playerSelection, computerPlay());
-
-//     console.log(result.message);
-//     if (result.playerWin) {
-//       playerScore++;
-//     } else if (result.computerWin) {
-//       computerScore++;
-//     }
-//     console.log(`Player: ${playerScore}   Computer: ${computerScore}`);
-//   }
-
-//   console.log('\n\n');
-
-//   if (playerScore === computerScore) {
-//     console.log(
-//       `It's a draw! Play again!\nFinal Score - Player: ${playerScore}   Computer: ${computerScore}`
-//     );
-//   } else if (playerScore > computerScore) {
-//     console.log(
-//       `You win the game!!\nFinal Score - Player: ${playerScore}   Computer: ${computerScore}`
-//     );
-//   } else {
-//     console.log(
-//       `You lose.\nFinal Score - Player: ${playerScore}   Computer: ${computerScore}`
-//     );
-//   }
-// }
