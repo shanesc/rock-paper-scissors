@@ -6,12 +6,112 @@
 
 html {
   font-size: 62.5%;
+  height: 100%;
+}
+
+html {
+  background: url("/andrew-buchanan-RJKLdqiyXuM-unsplash.jpg") no-repeat center center fixed;
+  background-size: cover;
+  /* background-repeat: no-repeat;
+  background-position: top;
+  height: 100%; */
 }
 
 body {
   box-sizing: border-box;
+}
+
+body {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: 5rem;
+  padding-top: 5rem;
+  font-family: "Lato", sans-serif;
   font-size: 1.6rem;
-  line-height: 1.7;
-  letter-spacing: normal;
+  font-weight: 400;
+  line-height: 1;
   text-align: center;
+  color: rgba(22, 31, 130, 0.961);
+  background-color: rgba(234, 235, 237, 0.502);
+  border-radius: 10px;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 4.5rem;
+  letter-spacing: .3rem;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 2.8rem;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+}
+
+header {
+  margin-bottom: 3rem;
+}
+
+.btn-container {
+  margin-bottom: 4rem;
+}
+
+.btn,
+.btn:link,
+.btn:visited {
+  margin: 0 1rem;
+  display: inline-block;
+  line-height: 1;
+  width: 12rem;
+  padding: 2.5rem 0;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  font-size: 7rem;
+  color: rgba(239, 187, 98, 0.961);
+  background-color: rgba(90, 146, 203, 0.79);
+  transition: all .1s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(17, 17, 17, 0.2);
+}
+
+.btn:active,
+.btn:focus  {
+  outline: none;
+  transform: translateY(-1px);
+  box-shadow: 0 .5rem 1rem rgba(17, 17, 17, 0.2);
+}
+
+/* {
+  outline: 5px solid rgba(22, 31, 130, 0.55);
+  outline-offset: 5px;
+} */
+
+.btn--rock {
+  transform: rotate(90deg);
+}
+
+.results__outcome {
+  margin-bottom: 2rem;
+}
+
+.results__score {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10rem;
+}
+
+.score {
+  padding: 0 2rem;
+  font-size: 2rem;
+  font-weight: 600;
 }

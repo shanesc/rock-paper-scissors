@@ -4,7 +4,12 @@
   <head>
     <meta charset="UTF-8">
     <title>Rock, Paper, Scissors!!!</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/style.css" type="text/css">
+    <link rel="stylesheet" href="/all.css" type="text/css">
   </head>
   <body>
     <header>
@@ -12,20 +17,19 @@
     </header>
     <main>
       <div class="btn-container">
-        <button data-choice="rock" class="btn">Rock</button>
-        <button data-choice="paper" class="btn">Paper</button>
-        <button data-choice="scissors" class="btn">Scissors</button>
+        <a href="#" data-choice="rock" class="btn"><i class="far fa-hand-rock btn--rock"></i></a>
+        <a href="#" data-choice="paper" class="btn"><i class="far fa-hand-paper"></i></a>
+        <a href="#" name="scissors" data-choice="scissors" class="btn"><i class="far fa-hand-scissors"></i></a>
       </div>
       <div class="results">
-        <p class="results__outcome">Make a selection to play...</p>
+        <h2 class="results__outcome">Make a selection to play...</h2>
         <div class="results__score">
-          <div class="player-score"></div>
-          <div class="computer-score"></div>
+          <div class="score score__player"></div>
+          <div class="score score__computer"></div>
         </div>
         <p class="results__winner"></p>
       </div>
     </main>
-
     <script src="script.js"></script>
   </body>
 </html>
