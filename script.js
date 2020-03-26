@@ -53,7 +53,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function playChoice(e) {
-  const playerChoice = e.target.getAttribute('data-choice');
+  const playerChoice = e.currentTarget.getAttribute('data-choice');
   const result = playRound(playerChoice, computerPlay());
   updateScore(result);
 }
@@ -63,8 +63,8 @@ function resetGame() {
   score.computer = 0;
   document.querySelector('.results__winner').textContent = '';
   document.querySelector('.results__outcome').textContent = 'Make a selection to play...';
-  document.querySelector('.player-score').textContent = '';
-  document.querySelector('.computer-score').textContent = '';
+  document.querySelector('.score__player').textContent = '';
+  document.querySelector('.score__computer').textContent = '';
   document.querySelector('.results').removeChild(document.querySelector('.results').lastChild);
   buttons.forEach(btn => btn.addEventListener('click', playChoice));
 }
@@ -90,8 +90,8 @@ function announceWinner(winner) {
 
 function updateScore(result) {
   const outcome = document.querySelector('.results__outcome');
-  const playerScore = document.querySelector('.player-score');
-  const computerScore = document.querySelector('.computer-score');
+  const playerScore = document.querySelector('.score__player');
+  const computerScore = document.querySelector('.score__computer');
 
   outcome.textContent = result.message;
   if (result.playerWin) {
@@ -110,3 +110,6 @@ function updateScore(result) {
 
 const buttons = document.querySelectorAll('.btn');
 buttons.forEach(btn => btn.addEventListener('click', playChoice));
+buttons.forEach(btn => btn.addEventListener('click', (e) => {
+  e.currentTarget.blur();
+}))
