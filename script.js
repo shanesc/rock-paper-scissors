@@ -63,8 +63,8 @@ function resetGame() {
   score.computer = 0;
   document.querySelector('.results__winner').textContent = '';
   document.querySelector('.results__outcome').textContent = 'Make a selection to play...';
-  document.querySelector('.score__player').textContent = '';
-  document.querySelector('.score__computer').textContent = '';
+  document.querySelector('.score__player').textContent = score.player;
+  document.querySelector('.score__computer').textContent = score.computer;
   document.querySelector('.results').removeChild(document.querySelector('.results').lastChild);
   buttons.forEach(btn => btn.addEventListener('click', playChoice));
 }
@@ -104,8 +104,8 @@ function updateScore(result) {
     score.player > score.computer ? announceWinner('player') : announceWinner('computer');
   }
 
-  playerScore.textContent = `Player: ${score.player}`;
-  computerScore.textContent = `Computer: ${score.computer}`;
+  playerScore.textContent = score.player;
+  computerScore.textContent = score.computer;
 }
 
 const buttons = document.querySelectorAll('.btn');
