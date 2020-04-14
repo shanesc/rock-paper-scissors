@@ -18,12 +18,11 @@
       <div class="btn-container">
         <a href="#" class="btn btn--rock" data-choice="rock"><i class="far fa-hand-rock"></i></a>
         <a href="#" class="btn" data-choice="paper"><i class="far fa-hand-paper"></i></a>
-        <a href="#" class="btn" data-choice="scissors"><i class="far fa-hand-scissors"></i></a>  
+        <a href="#" class="btn" data-choice="scissors"><i class="far fa-hand-scissors fa-hand-scissors--shift"></i></a>  
       </div>
 
-      <div class="results">
-        <h2 class="results__outcome"></h2>
-        <p class="results__winner"></p>
+      <div class="round-outcome">
+        <h2>Make your choice</h2>
       </div>
 
       <div class="scoreboard">
@@ -35,6 +34,13 @@
           <span class="score__computer">0</span>
           <h3>Computer</h3>
         </div>
+      </div>
+    </div>
+
+    <div class="modal modal--hidden">
+      <div class="modal__content">
+        <span class="result"></span>
+        <span class="modal__close-btn">&times;</span>
       </div>
     </div>
     

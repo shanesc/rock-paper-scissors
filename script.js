@@ -31,22 +31,22 @@ function playRound(playerSelection, computerSelection) {
       .toUpperCase() + computerSelection.toLowerCase().slice(1);
 
   let result = {
-    message: ``,
+    selections: {
+      playerSelection: playerSelection,
+      computerSelection: computerSelection
+    },
     playerWin: false,
     computerWin: false
   };
 
   if (playerSelection === computerSelection) {
-    result.message = `Draw! ${playerSelection} and ${computerSelection}`;
   } else if (
     (playerSelection === 'Rock' && computerSelection === 'Scissors') ||
     (playerSelection === 'Scissors' && computerSelection === 'Paper') ||
     (playerSelection === 'Paper' && computerSelection === 'Rock')
   ) {
-    result.message = `You win! ${playerSelection} beats ${computerSelection}!`;
     result.playerWin = true;
   } else {
-    (result.message = `You lose... ${computerSelection} beats ${playerSelection}...`),
       (result.computerWin = true);
   }
   return result;
@@ -61,16 +61,14 @@ function playChoice(e) {
 function resetGame() {
   score.player = 0;
   score.computer = 0;
-  document.querySelector('.results__winner').textContent = '';
-  document.querySelector('.results__outcome').textContent = 'Make a selection to play...';
   document.querySelector('.score__player').textContent = score.player;
   document.querySelector('.score__computer').textContent = score.computer;
-  document.querySelector('.results').removeChild(document.querySelector('.results').lastChild);
   buttons.forEach(btn => btn.addEventListener('click', playChoice));
+  toggleModal();
 }
 
 function announceWinner(winner) {
-  const winnerDisplay = document.querySelector('.results__winner');
+  const winnerDisplay = document.querySelector('.result');
   switch (winner) {
     case 'player':
       winnerDisplay.textContent = 'You win the game!';
@@ -79,25 +77,39 @@ function announceWinner(winner) {
       winnerDisplay.textContent = 'The computer wins the game...';
       break;
   }
+  toggleModal();
+}
 
-  buttons.forEach(btn => btn.removeEventListener('click', playChoice));
-  const resultsContainer = document.querySelector('.results');
-  let resetButton = document.createElement('button');
-  resetButton.textContent = 'Reset';
-  resultsContainer.appendChild(resetButton);
-  resetButton.addEventListener('click', resetGame);
+function createIconClass(selection) {
+  let classList = '';
+  switch (selection) {
+    case 'Rock':
+      classList = 'far fa-hand-rock';
+      break;
+    case 'Paper':
+      classList = 'far fa-hand-paper';
+      break;
+    case 'Scissors':
+      classList = 'far fa-hand-scissors';
+      break;
+  }
+
+  return classList;
 }
 
 function updateScore(result) {
-  const outcome = document.querySelector('.results__outcome');
+  const outcome = document.querySelector('.round-outcome');
   const playerScore = document.querySelector('.score__player');
   const computerScore = document.querySelector('.score__computer');
 
-  outcome.textContent = result.message;
   if (result.playerWin) {
     score.player++;
+    outcome.innerHTML = `<i class="${createIconClass(result.selections.playerSelection)}"></i> > <i class="${createIconClass(result.selections.computerSelection)}"></i>`;
   } else if (result.computerWin) {
     score.computer++;
+    outcome.innerHTML = `<i class="${createIconClass(result.selections.playerSelection)}"></i> < <i class="${createIconClass(result.selections.computerSelection)}"></i>`;
+  } else {
+    outcome.innerHTML = `<i class="${createIconClass(result.selections.playerSelection)}"></i> & <i class="${createIconClass(result.selections.computerSelection)}"></i>`;
   }
 
   if (score.player === 5 || score.computer === 5) {
@@ -113,3 +125,22 @@ buttons.forEach(btn => btn.addEventListener('click', playChoice));
 buttons.forEach(btn => btn.addEventListener('click', (e) => {
   e.currentTarget.blur();
 }))
+
+const modal = document.querySelector('.modal');
+const modalCloseBtn = document.querySelector('.modal__close-btn');
+// const modalOpenBtn = document.querySelector('.modal__open-btn');
+
+function toggleModal() {
+  modal.classList.toggle('modal--hidden');
+}
+
+function outsideClick(e) {
+  if (e.target == modal) {
+    resetGame();
+  }
+}
+// modalOpenBtn.addEventListener('click', toggleModal);
+
+modalCloseBtn.addEventListener('click', resetGame);
+
+window.addEventListener('click', outsideClick);

@@ -22,15 +22,17 @@ body {
   background-color: rgb(241, 249, 241);
   padding: 2rem;
   text-align: center;
+  font-family: 'Orbitron', Arial, Helvetica, sans-serif;
+  line-height: 1;
 }
 
 .header {
   position: absolute;
-  top: 24rem;
+  top: 22rem;
   padding: inherit;
   font-size: 2.5rem;
   text-transform: uppercase;
-  font-family: 'Orbitron', Arial, Helvetica, sans-serif;
+  letter-spacing: .5rem;
 }
 
 .wrapper {
@@ -40,6 +42,7 @@ body {
   background-color: rgb(203, 203, 203);
   border: 2px solid rgb(63, 63, 63);
   border-radius: 10px;
+  box-shadow: 5px 8px 20px 0 rgba(0,0,0, .2);
 }
 
 .btn-container {
@@ -70,41 +73,49 @@ body {
   text-shadow: 0 1px 0 #999, 0 2px 2px #888;
 }
 
-/* Modifications to rotate rock icon */
+/* ROTATE ROCK ICON AND SHADOW */
 
 .btn--rock,
 .btn--rock:link,
 .btn--rock:visited {
-  transform: rotate(90deg);
   text-shadow: 1px 0 0 #999, 2px 0 0 #888, 3px 0 0 #777, 4px 0 0 #666,
   5px 0px 7px #555;
 }
 
 .btn--rock:hover,
 .btn--rock:focus {
-  transform: translateY(1px) rotate(90deg);
   text-shadow: 1px 0 0 #999, 2px 0 0 #888, 3px 0 0 #777, 4px 0 4px #666;
 }
 
 .btn--rock:active {
-  transform: translateY(3px) rotate(90deg);
   text-shadow: 1px 0 0 #999, 2px 0 2px #888;
 }
 
-.fa-hand-scissors {
+.fa-hand-rock {
+  transform: rotate(90deg);
+}
+
+.fa-hand-scissors--shift {
   position: relative;
   top: 5px;
 }
 
-.results {
-  margin-bottom: 2rem;
+.round-outcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 13rem;
+  height: 2rem;
+  color: rgba(0,0,0, .8);
+  font-size: 3rem;
+  font-weight: 200;
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 4rem;
 }
 
-.results__outcome {
-  font-weight: 600;
-  font-size: 2.8rem;
-  letter-spacing: .1rem;
-  text-transform: uppercase;
+.round-outcome h2 {
+  font-size: 1.7rem;
 }
 
 .scoreboard {
@@ -131,7 +142,53 @@ body {
   border-right: 1px solid rgba(0,0,0, .5);
 }
 
-/* Flex styling */
+/* MODAL */
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  padding-top: 40vh;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0, .4);
+}
+
+.modal--hidden {
+  display: none;
+}
+
+.modal__content {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  width: 70%;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  border-radius: 2px;
+  box-shadow: 0 5px 5px 0 rgba(0,0,0, .3),
+    5px 7px 15px 0 rgba(0,0,0, .2);
+  font-size: 3rem;
+}
+
+.modal__close-btn {
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  color: lightgray;
+  cursor: pointer;
+  font-size: 3.5rem;
+  line-height: 0;
+}
+
+.modal__close-btn:hover,
+.modal__close-btn:active {
+  color: rgba(0,0,0, .8);
+  text-decoration: none;
+}
+
+/* FLEX STYLING */
 
 body {
   display: flex;
@@ -157,6 +214,12 @@ body {
   align-items: center;
 }
 
+.round-outcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .scoreboard {
   display: flex;
   justify-content: space-between;
@@ -173,8 +236,12 @@ body {
 
 @media (min-width: 670px) {
   .header {
-    top: 18rem;
-    font-size: 4rem;
+    top: 15rem;
+    font-size: 3rem;
+  }
+  
+  .wrapper {
+    padding: 4rem 10rem;
   }
 
   .btn,
@@ -183,8 +250,16 @@ body {
     font-size: 10rem;
   }
   
-  .wrapper {
-    padding: 4rem 10rem;
+  .round-outcome {
+    max-width: 15rem;
+    height: 4rem;
+    color: rgba(0,0,0, .8);
+    font-size: 4rem;
+    margin-bottom: 4rem;
+  }
+  
+  .round-outcome h2 {
+    font-size: 2rem;
   }
   
   .score {
@@ -195,5 +270,12 @@ body {
   
   .scoreboard {
     padding: 2rem 2rem;
+  }
+}
+
+@media (min-width: 800px) {
+  .header {
+    top: 14rem;
+    font-size: 4rem;
   }
 }
