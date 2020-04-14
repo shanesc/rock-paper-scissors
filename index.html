@@ -8,28 +8,36 @@
       href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css" type="text/css">
     <link rel="stylesheet" href="/all.css" type="text/css">
   </head>
   <body>
-    <header>
-      <h1>Rock, Paper, Scissors</h1>
-    </header>
-    <main>
+    <h1 class="header">Rock &times; Paper &times; Scissors</h1>
+    <div class="wrapper">
       <div class="btn-container">
-        <a href="#" data-choice="rock" class="btn"><i class="far fa-hand-rock btn--rock"></i></a>
-        <a href="#" data-choice="paper" class="btn"><i class="far fa-hand-paper"></i></a>
-        <a href="#" name="scissors" data-choice="scissors" class="btn"><i class="far fa-hand-scissors"></i></a>
+        <a href="#" class="btn btn--rock" data-choice="rock"><i class="far fa-hand-rock"></i></a>
+        <a href="#" class="btn" data-choice="paper"><i class="far fa-hand-paper"></i></a>
+        <a href="#" class="btn" data-choice="scissors"><i class="far fa-hand-scissors"></i></a>  
       </div>
+
       <div class="results">
-        <h2 class="results__outcome">Make a selection to play...</h2>
-        <div class="results__score">
-          <div class="score score__player"></div>
-          <div class="score score__computer"></div>
-        </div>
+        <h2 class="results__outcome"></h2>
         <p class="results__winner"></p>
       </div>
-    </main>
+
+      <div class="scoreboard">
+        <div class="score">
+          <span class="score__player">0</span>
+          <h3>Player</h3>
+        </div>
+        <div class="score">
+          <span class="score__computer">0</span>
+          <h3>Computer</h3>
+        </div>
+      </div>
+    </div>
+    
     <script src="script.js"></script>
   </body>
 </html>
