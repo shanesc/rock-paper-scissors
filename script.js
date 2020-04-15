@@ -128,7 +128,6 @@ buttons.forEach(btn => btn.addEventListener('click', (e) => {
 
 const modal = document.querySelector('.modal');
 const modalCloseBtn = document.querySelector('.modal__close-btn');
-// const modalOpenBtn = document.querySelector('.modal__open-btn');
 
 function toggleModal() {
   modal.classList.toggle('modal--hidden');
@@ -139,7 +138,6 @@ function outsideClick(e) {
     resetGame();
   }
 }
-// modalOpenBtn.addEventListener('click', toggleModal);
 
 modalCloseBtn.addEventListener('click', resetGame);
 
