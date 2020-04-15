@@ -18,7 +18,7 @@ body {
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   background-color: rgb(241, 249, 241);
   padding: 2rem;
   text-align: center;
@@ -27,9 +27,7 @@ body {
 }
 
 .header {
-  position: absolute;
-  top: 22rem;
-  padding: inherit;
+  margin-bottom: 6rem;
   font-size: 2.5rem;
   text-transform: uppercase;
   letter-spacing: .5rem;
